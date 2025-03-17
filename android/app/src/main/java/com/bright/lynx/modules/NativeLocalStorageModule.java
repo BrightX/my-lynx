@@ -5,7 +5,11 @@ import android.util.Log;
 
 import com.lynx.jsbridge.LynxMethod;
 import com.lynx.jsbridge.LynxModule;
+import com.lynx.react.bridge.JavaOnlyArray;
+import com.lynx.react.bridge.WritableArray;
 import com.tencent.mmkv.MMKV;
+
+import java.util.Arrays;
 
 public class NativeLocalStorageModule extends LynxModule {
     private static final String TAG = "mmkvLocalStorage";
@@ -36,9 +40,14 @@ public class NativeLocalStorageModule extends LynxModule {
     }
 
     @LynxMethod
-    public String[] keys() {
+    public WritableArray keys() {
         Log.d(TAG, "keys()");
-        return mmkv.allKeys();
+        String[] allKeys = mmkv.allKeys();
+        JavaOnlyArray array = new JavaOnlyArray();
+        if (allKeys != null && allKeys.length > 0) {
+            array.addAll(Arrays.asList(allKeys));
+        }
+        return array;
     }
 
     @LynxMethod
