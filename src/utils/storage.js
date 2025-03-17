@@ -1,7 +1,5 @@
 const {NativeSessionStorageModule, NativeLocalStorageModule} = NativeModules;
 
-const keywords = new Set(['setItem', 'getItem', 'hasItem', 'keys', 'removeItem', 'clear']);
-
 const context = (() => {
     if (typeof globalThis !== 'undefined') return globalThis
     if (typeof self !== 'undefined') return self
@@ -102,6 +100,8 @@ const handler = {
  * @return {ProxyHandler<NativeSessionStorageModule | NativeLocalStorageModule | any>}
  */
 const handlerNative = (target) => {
+    const keywords = new Set(['setItem', 'getItem', 'hasItem', 'keys', 'removeItem', 'clear']);
+
     return ({
         get(t, key) {
             if (keywords.has(key) && typeof target[key] === 'function') return target[key].bind(target)
@@ -131,8 +131,6 @@ if (context.Storage && context.localStorage instanceof context.Storage && contex
     ssProxy = context.sessionStorage;
     lsProxy = context.localStorage;
 } else if (NativeLocalStorageModule && NativeSessionStorageModule) {
-    // ssProxy = new Proxy(NativeSessionStorageModule, handler)
-    // lsProxy = new Proxy(NativeLocalStorageModule, handler)
     ssProxy = new Proxy({}, handlerNative(NativeSessionStorageModule))
     lsProxy = new Proxy({}, handlerNative(NativeLocalStorageModule))
 } else {

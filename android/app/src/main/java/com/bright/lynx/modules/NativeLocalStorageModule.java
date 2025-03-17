@@ -24,7 +24,7 @@ public class NativeLocalStorageModule extends LynxModule {
     @LynxMethod
     public void setItem(String key, String value) {
         mmkv.putString(key, value);
-        Log.d(TAG, "setItem: key = " + key + "value = " + value);
+        Log.d(TAG, "setItem: key = " + key + ", value = " + value);
     }
 
     @LynxMethod

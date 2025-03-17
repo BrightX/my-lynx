@@ -8,11 +8,16 @@ import reactLynxLogo from './assets/react-logo.png'
 
 export function App() {
   const [alterLogo, setAlterLogo] = useState(false)
-  const [myName, setName] = useState('aaa')
-  const [myName1, setName1] = useState('bbb')
+  const [myName, setName] = useState('')
+  const [myName1, setName1] = useState('')
 
   useEffect(() => {
+    'background only'
     console.info('Hello, ReactLynx')
+    if (!localStorage.myName) localStorage.myName = 'haha'
+    if (!sessionStorage.myName1) sessionStorage.myName1 = 'bbb'
+    setName(localStorage.myName)
+    setName1(sessionStorage.myName1)
   }, [])
 
   const onTap = useCallback(() => {
@@ -22,18 +27,9 @@ export function App() {
 
   const onTapName = useCallback(() => {
     'background only'
-    console.log('NativeLocalStorageModule =', NativeModules.NativeLocalStorageModule)
-    console.log('NativeLocalStorageModule.getItem =', NativeModules.NativeLocalStorageModule.getItem)
-    console.log('NativeLocalStorageModule.setItem =', NativeModules.NativeLocalStorageModule.setItem)
 
-    let name = NativeModules.NativeLocalStorageModule.getItem('myName')
-    if (!name) name = 'haha'
-    name += 'aaa'
-    console.log('name =', name)
-    NativeModules.NativeLocalStorageModule.setItem('myName', name)
-    // if (!localStorage.myName) localStorage.myName = 'aaa'
-    // const name = localStorage.myName + ' aa'
-    // localStorage.myName = name
+    const name = localStorage.myName + ' aa'
+    localStorage.myName = name
     setName(name)
   }, [myName])
 
@@ -58,8 +54,12 @@ export function App() {
           <text className='Title'>React</text>
           <text className='Subtitle'>on Lynx</text>
           <view bindtap={onTapName}>
-            <text>点击切换名称</text>
+            <text>点击切换名称 localStorage</text>
             <text className='Subtitle'>{myName}</text>
+          </view>
+          <view bindtap={onTapName1}>
+            <text>点击切换名称 sessionStorage</text>
+            <text className='Subtitle'>{myName1}</text>
           </view>
         </view>
         <view className='Content'>

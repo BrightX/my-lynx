@@ -23,7 +23,7 @@ public class NativeSessionStorageModule extends LynxModule {
     @LynxMethod
     public void setItem(String key, String value) {
         MAP.put(key, value);
-        Log.d(TAG, "setItem: key = " + key + "value = " + value);
+        Log.d(TAG, "setItem: key = " + key + ", value = " + value);
     }
 
     @LynxMethod
