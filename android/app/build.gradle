@@ -89,13 +89,14 @@ android {
 dependencies {
 
     // lynx dependencies
-    implementation "org.lynxsdk.lynx:lynx:3.2.0-rc.0"
-    implementation "org.lynxsdk.lynx:lynx-jssdk:3.2.0-rc.0"
-    implementation "org.lynxsdk.lynx:lynx-trace:3.2.0-rc.0"
-    implementation "org.lynxsdk.lynx:primjs:2.11.1-rc.0"
+    def lynxVersion = "3.2.0-rc.1"
+    implementation "org.lynxsdk.lynx:lynx:${lynxVersion}"
+    implementation "org.lynxsdk.lynx:lynx-jssdk:${lynxVersion}"
+    implementation "org.lynxsdk.lynx:lynx-trace:${lynxVersion}"
+    implementation "org.lynxsdk.lynx:primjs:2.11.1-rc.3"
 
     // integrating image-service
-    implementation "org.lynxsdk.lynx:lynx-service-image:3.2.0-rc.0"
+    implementation "org.lynxsdk.lynx:lynx-service-image:${lynxVersion}"
 
     // image-service dependencies, if not added, images cannot be loaded; if the host APP needs to use other image libraries, you can customize the image-service and remove this dependency
     implementation "com.facebook.fresco:fresco:2.3.0"
@@ -107,10 +108,10 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:4.9.0"
 
     // integrating log-service
-    implementation "org.lynxsdk.lynx:lynx-service-log:3.2.0-rc.0"
+    implementation "org.lynxsdk.lynx:lynx-service-log:${lynxVersion}"
 
     // integrating http-service
-    implementation "org.lynxsdk.lynx:lynx-service-http:3.2.0-rc.0"
+    implementation "org.lynxsdk.lynx:lynx-service-http:${lynxVersion}"
 
     // see: https://github.com/Tencent/MMKV/blob/master/README_CN.md#android-%E6%8C%87%E5%8D%97
     // see: https://github.com/Tencent/MMKV/wiki/android_tutorial_cn
