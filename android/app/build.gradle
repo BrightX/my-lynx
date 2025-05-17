@@ -40,7 +40,6 @@ android {
                 exclude 'DebugProbesKt.bin'
                 exclude 'kotlin/**.kotlin_builtins'
                 exclude 'META-INF/**.version'
-                exclude 'META-INF/com/android/build/gradle/app-metadata.properties'
             }
             shrinkResources true
             signingConfig signingConfigs.release
