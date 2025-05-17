@@ -40,8 +40,10 @@ android {
                 exclude 'DebugProbesKt.bin'
                 exclude 'kotlin/**.kotlin_builtins'
                 exclude 'META-INF/**.version'
+                exclude 'META-INF/com/android/build/gradle/app-metadata.properties'
             }
             shrinkResources true
+            signingConfig signingConfigs.release
         }
     }
 
@@ -89,11 +91,11 @@ android {
 dependencies {
 
     // lynx dependencies
-    def lynxVersion = "3.2.0-rc.1"
+    def lynxVersion = "3.2.0"
     implementation "org.lynxsdk.lynx:lynx:${lynxVersion}"
     implementation "org.lynxsdk.lynx:lynx-jssdk:${lynxVersion}"
     implementation "org.lynxsdk.lynx:lynx-trace:${lynxVersion}"
-    implementation "org.lynxsdk.lynx:primjs:2.11.1-rc.3"
+    implementation "org.lynxsdk.lynx:primjs:2.12.0"
 
     // integrating image-service
     implementation "org.lynxsdk.lynx:lynx-service-image:${lynxVersion}"
